@@ -255,10 +255,9 @@ public class Customer {
      *
      * @param option specifies which word to print.
      */
-    void displayArtWork(int option) {
-        String artWork = "";
-        if (option == 1) {
-            artWork = """
+    private static final List<String> ArtWorks = new ArrayList<>();
+    static {
+        ArtWorks.add("""
                                         
                     d8b   db d88888b db   d8b   db       .o88b. db    db .d8888. d888888b  .d88b.  .88b  d88. d88888b d8888b.\s
                     888o  88 88'     88   I8I   88      d8P  Y8 88    88 88'  YP `~~88~~' .8P  Y8. 88'YbdP`88 88'     88  `8D\s
@@ -268,9 +267,8 @@ public class Customer {
                     VP   V8P Y88888P  `8b8' `8d8'        `Y88P' ~Y8888P' `8888Y'    YP     `Y88P'  YP  YP  YP Y88888P 88   YD\s
                                                                                                                              \s
                                                                                                                              \s
-                    """;
-        } else if (option == 2) {
-            artWork = """
+                    """);
+        ArtWorks.add("""
                                         
                     .d8888. d88888b  .d8b.  d8888b.  .o88b. db   db       .o88b. db    db .d8888. d888888b  .d88b.  .88b  d88. d88888b d8888b.\s
                     88'  YP 88'     d8' `8b 88  `8D d8P  Y8 88   88      d8P  Y8 88    88 88'  YP `~~88~~' .8P  Y8. 88'YbdP`88 88'     88  `8D\s
@@ -280,9 +278,8 @@ public class Customer {
                     `8888Y' Y88888P YP   YP 88   YD  `Y88P' YP   YP       `Y88P' ~Y8888P' `8888Y'    YP     `Y88P'  YP  YP  YP Y88888P 88   YD\s
                                                                                                                                               \s
                                                                                                                                               \s
-                    """;
-        } else if (option == 3) {
-            artWork = """
+                    """);
+        ArtWorks.add("""
                                         
                     .d8888. db   db  .d88b.  db   d8b   db d888888b d8b   db  d888b        .d8b.  db      db           d8888b.  .d8b.  .d8888. .d8888. d88888b d8b   db  d888b  d88888b d8888b. .d8888.\s
                     88'  YP 88   88 .8P  Y8. 88   I8I   88   `88'   888o  88 88' Y8b      d8' `8b 88      88           88  `8D d8' `8b 88'  YP 88'  YP 88'     888o  88 88' Y8b 88'     88  `8D 88'  YP\s
@@ -292,9 +289,8 @@ public class Customer {
                     `8888Y' YP   YP  `Y88P'   `8b8' `8d8'  Y888888P VP   V8P  Y888P       YP   YP Y88888P Y88888P      88      YP   YP `8888Y' `8888Y' Y88888P VP   V8P  Y888P  Y88888P 88   YD `8888Y'\s
                                                                                                                                                                                                        \s
                                                                                                                                                                                                        \s
-                    """;
-        } else if (option == 4) {
-            artWork = """
+                    """);
+        ArtWorks.add("""
                                         
                     d8888b. d88888b  d888b  d888888b .d8888. d888888b d88888b d8888b. d88888b d8888b.      d8888b.  .d8b.  .d8888. .d8888. d88888b d8b   db  d888b  d88888b d8888b. .d8888.     \s
                     88  `8D 88'     88' Y8b   `88'   88'  YP `~~88~~' 88'     88  `8D 88'     88  `8D      88  `8D d8' `8b 88'  YP 88'  YP 88'     888o  88 88' Y8b 88'     88  `8D 88'  YP     \s
@@ -312,9 +308,8 @@ public class Customer {
                     Y888888P VP   V8P      YP      Y88888P Y888888P  Y888P  YP   YP    YP                                                                                                       \s
                                                                                                                                                                                                 \s
                                                                                                                                                                                                 \s
-                    """;
-        } else if (option == 5) {
-            artWork = """
+                    """);
+        ArtWorks.add("""
                                         
                     d8888b. d88888b db      d88888b d888888b d88888b      d88888b db      d888888b  d888b  db   db d888888b\s
                     88  `8D 88'     88      88'     `~~88~~' 88'          88'     88        `88'   88' Y8b 88   88 `~~88~~'\s
@@ -324,7 +319,17 @@ public class Customer {
                     Y8888D' Y88888P Y88888P Y88888P    YP    Y88888P      YP      Y88888P Y888888P  Y888P  YP   YP    YP   \s
                                                                                                                            \s
                                                                                                                            \s
-                    """;
+                    """);
+    }
+    
+    public static void registerArtWork(String art){
+        ArtWorks.add(art);
+    }
+    
+    void displayArtWork(int option){
+        String artWork = "";
+        if(option >= 1 && option <= ArtWorks.size()){
+            artWork = ArtWorks.get(option-1);
         }
         System.out.println(artWork);
     }
