@@ -4,7 +4,7 @@
  *
  * */
 
-
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
@@ -227,11 +227,21 @@ public class FlightReservation implements DisplayClass {
         }
     }
 
-    @Override
-    public void displayArtWork(int option) {
-        String artWork;
-        if (option == 1) {
-            artWork = """
+    private static final String LogOutArt = """
+
+                    db       .d88b.   d888b   d888b  d88888b d8888b.       .d88b.  db    db d888888b\s
+                    88      .8P  Y8. 88' Y8b 88' Y8b 88'     88  `8D      .8P  Y8. 88    88 `~~88~~'\s
+                    88      88    88 88      88      88ooooo 88   88      88    88 88    88    88   \s
+                    88      88    88 88  ooo 88  ooo 88~~~~~ 88   88      88    88 88    88    88   \s
+                    88booo. `8b  d8' 88. ~8~ 88. ~8~ 88.     88  .8D      `8b  d8' 88b  d88    88   \s
+                    Y88888P  `Y88P'   Y888P   Y888P  Y88888P Y8888D'       `Y88P'  ~Y8888P'    YP   \s
+                                                                                                    \s
+                                                                                                    \s
+                    """;
+
+    private static final List<String> ArtWorks = new ArrayList<>();
+    static{
+        ArtWorks.add("""
                                         
                     d8888b.  .d88b.   .d88b.  db   dD      d88888b db      d888888b  d888b  db   db d888888b\s
                     88  `8D .8P  Y8. .8P  Y8. 88 ,8P'      88'     88        `88'   88' Y8b 88   88 `~~88~~'\s
@@ -241,9 +251,8 @@ public class FlightReservation implements DisplayClass {
                     Y8888P'  `Y88P'   `Y88P'  YP   YD      YP      Y88888P Y888888P  Y888P  YP   YP    YP   \s
                                                                                                             \s
                                                                                                             \s
-                    """;
-        } else if (option == 2) {
-            artWork = """
+                    """);
+        ArtWorks.add("""
                                         
                     d88888b d8888b. d888888b d888888b      d888888b d8b   db d88888b  .d88b. \s
                     88'     88  `8D   `88'   `~~88~~'        `88'   888o  88 88'     .8P  Y8.\s
@@ -253,9 +262,8 @@ public class FlightReservation implements DisplayClass {
                     Y88888P Y8888D' Y888888P    YP         Y888888P VP   V8P YP       `Y88P' \s
                                                                                              \s
                                                                                              \s
-                    """;
-        } else if (option == 3) {
-            artWork = """
+                    """);
+        ArtWorks.add("""
                                         
                     d8888b. d88888b db      d88888b d888888b d88888b       .d8b.   .o88b.  .o88b.  .d88b.  db    db d8b   db d888888b\s
                     88  `8D 88'     88      88'     `~~88~~' 88'          d8' `8b d8P  Y8 d8P  Y8 .8P  Y8. 88    88 888o  88 `~~88~~'\s
@@ -265,9 +273,8 @@ public class FlightReservation implements DisplayClass {
                     Y8888D' Y88888P Y88888P Y88888P    YP    Y88888P      YP   YP  `Y88P'  `Y88P'  `Y88P'  ~Y8888P' VP   V8P    YP   \s
                                                                                                                                      \s
                                                                                                                                      \s
-                    """;
-        } else if (option == 4) {
-            artWork = """
+                    """);
+        ArtWorks.add("""
 
                     d8888b.  .d8b.  d8b   db d8888b.  .d88b.  .88b  d88.      d88888b db      d888888b  d888b  db   db d888888b      .d8888.  .o88b. db   db d88888b d8888b. db    db db      d88888b\s
                     88  `8D d8' `8b 888o  88 88  `8D .8P  Y8. 88'YbdP`88      88'     88        `88'   88' Y8b 88   88 `~~88~~'      88'  YP d8P  Y8 88   88 88'     88  `8D 88    88 88      88'    \s
@@ -277,9 +284,8 @@ public class FlightReservation implements DisplayClass {
                     88   YD YP   YP VP   V8P Y8888D'  `Y88P'  YP  YP  YP      YP      Y88888P Y888888P  Y888P  YP   YP    YP         `8888Y'  `Y88P' YP   YP Y88888P Y8888D' ~Y8888P' Y88888P Y88888P\s
                                                                                                                                                                                                      \s
                     Are you thinking that it's not feasible(RandomSchedule)...Then you can confirm it by re-running the program...
-                    """;
-        } else if (option == 5) {
-            artWork = """
+                    """);
+        ArtWorks.add("""
                                         
                      .o88b.  .d8b.  d8b   db  .o88b. d88888b db           d88888b db      d888888b  d888b  db   db d888888b\s
                     d8P  Y8 d8' `8b 888o  88 d8P  Y8 88'     88           88'     88        `88'   88' Y8b 88   88 `~~88~~'\s
@@ -289,9 +295,8 @@ public class FlightReservation implements DisplayClass {
                      `Y88P' YP   YP VP   V8P  `Y88P' Y88888P Y88888P      YP      Y88888P Y888888P  Y888P  YP   YP    YP   \s
                                                                                                                            \s
                                                                                                                            \s
-                    """;
-        } else if (option == 6) {
-            artWork = """
+                    """);
+        ArtWorks.add("""
                                         
                     d8888b. d88888b  d888b  d888888b .d8888. d888888b d88888b d8888b. d88888b d8888b.      d88888b db      d888888b  d888b  db   db d888888b .d8888.     \s
                     88  `8D 88'     88' Y8b   `88'   88'  YP `~~88~~' 88'     88  `8D 88'     88  `8D      88'     88        `88'   88' Y8b 88   88 `~~88~~' 88'  YP     \s
@@ -309,21 +314,19 @@ public class FlightReservation implements DisplayClass {
                     Y8888P'    YP         88      YP   YP `8888Y' `8888Y' Y88888P VP   V8P  Y888P  Y88888P 88   YD                                                       \s
                                                                                                                                                                          \s
                                                                                                                                                                          \s
-                    """;
-        } else {
-            artWork = """
+                    """);
+    }
 
-                    db       .d88b.   d888b   d888b  d88888b d8888b.       .d88b.  db    db d888888b\s
-                    88      .8P  Y8. 88' Y8b 88' Y8b 88'     88  `8D      .8P  Y8. 88    88 `~~88~~'\s
-                    88      88    88 88      88      88ooooo 88   88      88    88 88    88    88   \s
-                    88      88    88 88  ooo 88  ooo 88~~~~~ 88   88      88    88 88    88    88   \s
-                    88booo. `8b  d8' 88. ~8~ 88. ~8~ 88.     88  .8D      `8b  d8' 88b  d88    88   \s
-                    Y88888P  `Y88P'   Y888P   Y888P  Y88888P Y8888D'       `Y88P'  ~Y8888P'    YP   \s
-                                                                                                    \s
-                                                                                                    \s
-                    """;
+    public static void registerArtWork(String art){
+        ArtWorks.add(art);
+    }
+
+    @Override
+    public void displayArtWork(int option){
+        String artWork = LogOutArt;
+        if(option >= 0 && option <= ArtWorks.size()){
+            artWork = ArtWorks.get(option-1);
         }
-
         System.out.println(artWork);
     }
 }
