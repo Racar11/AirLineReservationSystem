@@ -13,6 +13,7 @@ public class Customer {
     public List<Flight> flightsRegisteredByUser;
     public List<Integer> numOfTicketsBookedByUser;
     public static final List<Customer> customerCollection = User.getCustomersCollection();
+    private static final CustomerTablePrinter printer = new CustomerTablePrinter();
 
     //        ************************************************************ Behaviours/Methods ************************************************************
 
@@ -88,7 +89,7 @@ public class Customer {
      * @return customers data in String
      */
     private String toString(int i) {
-        return String.format("%10s| %-10d | %-10s | %-32s | %-7s | %-27s | %-35s | %-23s |", "", i, randomIDDisplay(userID), name, age, email, address, phone);
+        return printer.row(i, this);
     }
 
     /**
@@ -200,12 +201,7 @@ public class Customer {
      * Shows the header for printing customers data
      */
     void displayHeader() {
-        System.out.println();
-        System.out.printf("%10s+------------+------------+----------------------------------+---------+-----------------------------+-------------------------------------+-------------------------+\n", "");
-        System.out.printf("%10s| SerialNum  |   UserID   | Passenger Names                  | Age     | EmailID\t\t       | Home Address\t\t\t     | Phone Number\t       |%n", "");
-        System.out.printf("%10s+------------+------------+----------------------------------+---------+-----------------------------+-------------------------------------+-------------------------+\n", "");
-        System.out.println();
-
+        printer.printHeader();
     }
 
     /**
